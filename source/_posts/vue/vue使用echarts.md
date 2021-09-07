@@ -2,6 +2,8 @@
 title: vue简单使用echarts
 date: 2021-09-02     
 cover: https://cdn.jsdelivr.net/gh/jerryc127/CDN@latest/cover/default_bg.png #cover 文章图标
+tags: echarts
+categories: vue
 ---
 ## 前言
 商业级数据图表，它是一个纯JavaScript的图标库，兼容绝大部分的浏览器，底层依赖轻量级的canvas类库ZRender，提供直观，生动，可交互，可高度个性化定制的数据可视化图表。创新的拖拽重计算、数据视图、值域漫游等特性大大增强了用户体验，赋予了用户对数据进行挖掘、整合的能力。

@@ -2,6 +2,8 @@
 title: vue使用dialog
 date: 2021-09-03
 cover: https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1630743484000.png
+tags: dialog
+categories: element-ui
 ---
 ## 前言
 初学vue时做demo练习时  喜欢跳转另一个vue页面进行操作，这次来点不一样的

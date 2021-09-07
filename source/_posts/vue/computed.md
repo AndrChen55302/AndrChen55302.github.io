@@ -3,6 +3,8 @@
 title: computed计算属性
 date: 2021-08-31
 cover: https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg
+tags: computed
+categories: vue2.0
 ---
 
 ## 前言

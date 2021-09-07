@@ -2,6 +2,8 @@
 title: 使用GitHub Action 自动部署
 date: 2021-09-06
 cover: https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1630918531000.jpg
+tags: GitHub Action
+categories: GitHub
 ---
 ## 前言
 

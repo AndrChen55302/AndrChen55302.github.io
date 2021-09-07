@@ -2,6 +2,8 @@
 title: git命令操作
 date: 2021-09-04
 cover: https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1630924572000.png
+tags: git命令操作
+categories: GitHub
 ---
 ## 前言
 使用github的时候肯定不满足于单纯的只创建一个空仓库,

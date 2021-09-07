@@ -1,33 +1,58 @@
 - class_name: 主题作者
-  class_desc: 那些人，那些事
+  class_desc: hexo  设计师  作者
   link_list:
+    - name: Jerry
+      link: https://butterfly.js.org/
+      avatar: https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1630938268000.jpg
+      descr: A Simple and Card UI Design theme for Hexo
     - name: Hexo
       link: https://hexo.io/zh-tw/
       avatar: https://d33wubrfki0l68.cloudfront.net/6657ba50e702d84afb32fe846bed54fba1a77add/827ae/logo.svg
-      descr: 快速、簡單且強大的網誌框架
+      descr: 快速、简单且强大的网站框架
+    - name: Heo
+      link: https://blog.zhheo.com/
+      avatar: https://blog.zhheo.com/img/avatar.png
+      descr: 爱折腾的设计师
 
+- class_name: 大佬们！！！
+  class_desc: 向着大佬而前进
+  link_list:
+    - name: 二兔
+      link: https://blog.juanertu.com
+      avatar: https://blog.juanertu.com/images/avatar.png
+      descr: 能与你一起成长，我荣幸之至。
 
+- class_name: 牛逼坏了
+  class_desc: 哇哦 给我羡慕坏了
+  link_list:
+    - name: error 404
+      link: https://iscc.cf/
+      avatar: https://q1.qlogo.cn/g?b=qq&nk=2877406366&s=640
+      descr: 能与你一起成长，我荣幸之至。
 
 - class_name: 友情链接
-  class_desc: 那些人，那些事
+  class_desc: 是缘分让我们相遇
   link_list:
-    - name: Hexo
-      link: https://hexo.io/zh-tw/
-      avatar: https://d33wubrfki0l68.cloudfront.net/6657ba50e702d84afb32fe846bed54fba1a77add/827ae/logo.svg
-      descr: 快速、簡單且強大的網誌框架
+    - name: 小嘉的部落格
+      link: https://blog.imzjw.cn/
+      avatar: https://cdn.jsdelivr.net/npm/nanshen/avatar.jpg
+      descr: 一个不仅仅关注JAVA技术的部落格
 
-- class_name: 網站
-  class_desc: 值得推薦的網站
-  link_list:
-    - name: Youtube
-      link: https://www.youtube.com/
-      avatar: https://i.loli.net/2020/05/14/9ZkGg8v3azHJfM1.png
-      descr: 視頻網站
-    - name: Weibo
-      link: https://www.weibo.com/
-      avatar: https://i.loli.net/2020/05/14/TLJBum386vcnI1P.png
-      descr: 中國最大社交分享平台
-    - name: Twitter
-      link: https://twitter.com/
-      avatar: https://i.loli.net/2020/05/14/5VyHPQqR6LWF39a.png
-      descr: 社交分享平台
+
+
+
+#- class_name: 網站
+#  class_desc: 值得推薦的網站
+#  link_list:
+#    - name: Youtube
+#      link: https://www.youtube.com/
+#      avatar: https://i.loli.net/2020/05/14/9ZkGg8v3azHJfM1.png
+#      descr: 視頻網站
+#    - name: Weibo
+#      link: https://www.weibo.com/
+#      avatar: https://i.loli.net/2020/05/14/TLJBum386vcnI1P.png
+#      descr: 中國最大社交分享平台
+#    - name: Twitter
+#      link: https://twitter.com/
+#      avatar: https://i.loli.net/2020/05/14/5VyHPQqR6LWF39a.png
+#      descr: 社交分享平台

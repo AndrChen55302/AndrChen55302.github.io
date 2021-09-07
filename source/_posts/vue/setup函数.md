@@ -2,6 +2,8 @@
 title: vue3.0中setup
 date: 2021-09-06  
 cover:  https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1630932759000.png
+tags: setup函数
+categories: vue3.0
 ---
 ## 前言
 

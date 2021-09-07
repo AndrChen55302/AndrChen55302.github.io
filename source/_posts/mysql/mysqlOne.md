@@ -2,6 +2,8 @@
 title: mysql数据库基本操作
 date: 2021-09-05
 cover: https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1630745290000.png
+tags: mysql数据库基本操作
+categories: mysql
 ---
 ## 前言
 一些关于数据库的基本操作

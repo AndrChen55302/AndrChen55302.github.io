@@ -1,6 +1,9 @@
 ---
 title: Vue2.0生命周期
 date: 2021-08-30
+cover:  https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1630932759000.png
+tags: 2.0生命周期
+categories: vue2.0
 ---
 
 ## 前言

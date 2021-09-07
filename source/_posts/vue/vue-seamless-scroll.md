@@ -2,6 +2,8 @@
 title: vue使用vue-seamless-scroll实现无缝滚动
 date: 2021-09-01
 cover: https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1630741100000.jpg
+tags: vue-seamless-scroll
+categories: vue2.0
 ---
 ## 前言
 通过使用 vue-seamless-scroll这个插件可以快速的实现无缝滚动
