@@ -1,6 +1,6 @@
 ---
 title: maven基础
-date: 2021-09-06
+date: 2021-09-07
 cover: https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1632307382000.jpg
 tags: maven
 categories: maven
