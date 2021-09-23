@@ -1,6 +1,6 @@
 ---
 title: 动态sql
-date: 2021-09-06
+date: 2021-09-08
 cover: https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1632307909000.webp
 tags: 动态sql
 categories: mybatis
