@@ -1,5 +1,5 @@
 ---
-title: SpringBoot集成Hutool工具类
+title: SpringBoot统一返回类
 date: 2021-09-28
 cover: https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1633779120000.webp
 tags: 统一封装返回类
