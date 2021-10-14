@@ -60,10 +60,10 @@ categories: SpringBoot
 aliyun:
   oss:
     file:
-      bucketName: endure-oss-demo
-      endpoint: http://oss-cn-beijing.aliyuncs.com
-      keyid: LTAI5tLupJD6Uzbu5Hoe3xra
-      keysecret: xa0o6LP2YS8r6j8m1D0Jb5K4ResJYF
+      bucketName: Bucket名
+      endpoint: http:// + Endpoint 地址
+      keyid: 你的 AccessKeyId 
+      keysecret: 你的 AccessSecret
 
 ```
 
@@ -207,7 +207,7 @@ public class OssController {
 
 - 自己用postman测试不知道为什么获取不到文件
 - 用vue和element-ui写了个图片上传
-- ![](https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/image-20211014162209221.png)
+- ![image-20211014162209221](https://cdn.jsdelivr.net/gh/AndrChen55302/CDN/img/hpp_upload//img/hpp_upload/image-20211014162209221.png)
 - 完成！
 
   
