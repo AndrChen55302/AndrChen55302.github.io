@@ -1,205 +1,103 @@
 ---
-title: SpringBoot统一返回类
+title: natapp
 date: 2021-09-28
 cover: https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1633779120000.webp
-tags: 统一封装返回类
+tags: natapp
 categories: SpringBoot
 ---
-## 前言
+# natapp的使用
 
-在进行接口开发时，一般需要一个固定的返回样式，成功和失败的时候，都按照这种格式来进行统一的返回，这样，在与其他人进行接口之间的联调时不会显得很杂乱无章。而这种固定的格式如果放在Java的每个接口单独处理时，又会在接口开发时很繁琐，所以这个时候可以采用封装一个实体类，统一返回固定模板格式的内容。
+### 1.natapp是干什么的？
+(1).在进行微信公众号开发时，我们需要搭建网站，并且随时都有可能修改网站内容进行调试。如果能够将内网ip映射到外网上，将大大方便我们的调试。每次发布只需eclipse/Idea运行应用即可。
+(2).通过natapp将内网映射到外网，还可以方便我们其他工作，比如外网展示网站等。
+总之一句话，我们使用natapp主要是用来实现内网穿透。便于开发。
 
-## 封装模板
+### 2.下载
 
-先看一下没有封装之前，接口代码和返回格式：
+打开==> [NATAPP-内网穿透 基于ngrok的国内高速内网映射工具](https://natapp.cn/) 进入官网
 
-request
+![image-20211021113255472](https://cdn.jsdelivr.net/gh/get103/image1/imgimage-20211021113255472.png)
 
-```class
-/**
- * 用户修改
- * @return 返回修改的用户信息
- */
-@PutMapping(value = "update")
-public User update(@RequestBody User user) {
-		User updatedUser = userService.update(user);
-		return updatedUser;
-}
+
+
+点击导航栏的==客户端下载==，选择需要的版本，本次演示使用的是 windows 64位，点击后即可下载
+
+![image-20211021113535251](https://cdn.jsdelivr.net/gh/get103/image1/imgimage-20211021113535251.png)
+
+
+
+### 3.注册登录
+
+接下来我们开始注册
+
+![image-20211021113839637](https://cdn.jsdelivr.net/gh/get103/image1/imgimage-20211021113839637.png)
+
+界面如下，进行注册
+
+![image-20211021113920751](https://cdn.jsdelivr.net/gh/get103/image1/imgimage-20211021113920751.png)
+
+注册完成之后，点击登录进入一下界面
+
+![image-20211021114108360](https://cdn.jsdelivr.net/gh/get103/image1/imgimage-20211021114108360.png)
+
+之后我们要进行实名认证，
+
+![image-20211021114404394](https://cdn.jsdelivr.net/gh/get103/image1/imgimage-20211021114404394.png)
+
+### 4.购买隧道与配置
+
+认证后，点击购买隧道
+
+![image-20211021114433644](https://cdn.jsdelivr.net/gh/get103/image1/imgimage-20211021114433644.png)
+
+![image-20211021114447087](https://cdn.jsdelivr.net/gh/get103/image1/imgimage-20211021114447087.png)
+
+选择安全隧道，进行配置。这里我使用的是Web协议和80端口，完成之后点击免费购买
+
+![image-20211021114557586](https://cdn.jsdelivr.net/gh/get103/image1/imgimage-20211021114557586.png)
+
+
+
+配置购买成功的隧道
+
+下图是我购买成功的隧道，这是我申请的一个免费隧道，如果购买了其他的隧道也会在下面显示
+
+![image-20211021115012476](https://cdn.jsdelivr.net/gh/get103/image1/imgimage-20211021115012476.png)
+
+点击复制复制获取你的token
+
+``这里点击"点击复制"可能没用(那为什么要加一个复制按钮····)，可以点击显示，然后手动复制``
+
+![image-20211021140826248](https://cdn.jsdelivr.net/gh/get103/image1/imgimage-20211021140826248.png)
+
+### 5.启动
+
+接下来将我们之前下载的natapp解压出来
+
+![image-20211021141308596](https://cdn.jsdelivr.net/gh/get103/image1/imgimage-20211021141308596.png)
+
+然后双击启动，效果如下图
+
+![image-20211021141341981](https://cdn.jsdelivr.net/gh/get103/image1/imgimage-20211021141341981.png)
+
+ 然后在这个cmd窗口输入命令**natapp -authtoken 你的token**，回车运行
+
+注意：这个token就是刚才在免费渠道获取的那个
+
+> natapp -authtoken 你的token
+
+显示效果如下
+
+![image-20211021142139003](https://cdn.jsdelivr.net/gh/get103/image1/imgimage-20211021142139003.png)
+
+```
+Forwarding              http://ac4esy.natappfree.cc -> 127.0.0.1:80   
 ```
 
-responese
+此时http://ac4esy.natappfree.cc就映射到了你本地的80端口，需要映射到其他端口，可以在natapp进行配置。
 
-```java
-{
-	"userId": "0d67cfa7-f6a1-46b6-8e5a-b605afc98c44",
-	"username": "ww",
-	"password": "123456",
-	"status": 0,
-	"createTime": 310863886132307,
-	"updateTime": 312955781619836
-}
-```
+到了这一步，你的电脑已经映射到外网了。
 
-很显然，这种原始的内容返回虽然很直观，但是如果在发生错误的时候，那么接口的返回就比较的不自然了，甚至会将底层的错误对外暴露，下面介绍下一个简单的统一接口样式的封装：
-
-### 枚举类CodeResultEnums：定义返回码code及提示信息msg
-
-```enum
-/**
- * @Author: ThinkPad
- * @Creation: 2021/9/15 11:20
- * @Desc: 状态码管理
- */
-public enum CodeResultEnums {
-    //通用的状态码
-    SUCCESS(200,"成功"),
-    ERROR(400,"失败"),
-
-    //自定义的状态码
-    USER_CODE_EXIST(50001,"用户名已被使用"),//用于注册
-    USER_LOGIN_NULL(50002,"用户或密码为空"),//用于登录
-    USER_LOGIN_EXIST(50003,"用户名不存在"),//用于登录
-    ;
-
-    private Integer code;
-    private String massage;
-
-
-    CodeResultEnums(Integer code, String massage) {
-        this.code = code;
-        this.massage = massage;
-    }
-
-    public Integer getCode() {
-        return code;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
-    }
-
-    public String getMassage() {
-        return massage;
-    }
-
-    public void setMassage(String massage) {
-        this.massage = massage;
-    }
-}
-```
-
-### 控制器返回值类型
-
-```class
-/**
- * @Author: ThinkPad
- * @Creation: 2021/9/15 12:22
- * @Desc: 控制器返回值
- */
-@Data
-public class R<T> {
-
-    private Integer code;
-    private String message;
-    private T data;
-
-    //1.构造函数->自定义状态码
-    public R() {
-    }
-
-    public R(Integer code, String message, T data) {
-        this.code = code;
-        this.message = message;
-        this.data = data;
-    }
-
-    public R(Integer code, String message) {
-        this.code = code;
-        this.message = message;
-    }
-
-    //2.构造函数->引用枚举做状态码
-    public R(CodeResultEnums codeResultEnums) {
-        this.code= codeResultEnums.getCode();
-        this.message = codeResultEnums.getMassage();
-    }
-    public R(CodeResultEnums codeResultEnums, T data) {
-        this.code= codeResultEnums.getCode();
-        this.message = codeResultEnums.getMassage();
-        this.data = data;
-    }
-}
-```
-
-### 统一返回的实体类型
-
-```responese
-/**
- * @Author: ThinkPad
- * @Creation: 2021/9/15 13:42
- * @Desc: 统一返回的实体类型
- */
-public class ResponseDataUtils {
-    public static <T> R buildSuccess(T data) {
-        return new R<T>(CodeResultEnums.SUCCESS, data);
-    }
-
-    public static R buildSuccess() {
-        return new R(CodeResultEnums.SUCCESS);
-    }
-
-    public static R buildSuccess(String msg) {
-        return new R(CodeResultEnums.SUCCESS.getCode(), msg);
-    }
-
-    public static R buildSuccess(Integer code, String msg) {
-        return new R(code, msg);
-    }
-
-    public static <T> R buildSuccess(Integer code, String msg, T data) {
-        return new R<T>(code, msg, data);
-    }
-
-    public static R buildSuccess(CodeResultEnums CodeResultEnums) {
-        return new R(CodeResultEnums);
-    }
-
-    public static <T> R buildError(T data) {
-        return new R<T>(CodeResultEnums.ERROR, data);
-    }
-
-    public static R buildError() {
-        return new R(CodeResultEnums.ERROR);
-    }
-
-    public static R buildError(String msg) {
-        return new R(CodeResultEnums.ERROR.getCode(), msg);
-    }
-
-    public static R buildError(Integer code, String msg) {
-        return new R(code, msg);
-    }
-
-    public static <T> R buildError(Integer code, String msg, T data) {
-        return new R<T>(code, msg, data);
-    }
-
-    public static R buildError(CodeResultEnums CodeResultEnums) {
-        return new R(CodeResultEnums);
-
-    }
-}
-```
-
-### controller
-
-```controller
-@ApiOperation("查询所有用户信息")
-    @GetMapping("/getAll")
-    public R getUserList(){
-        return ResponseDataUtils.buildSuccess(userService.list());
-    }
-```
 
 
 
