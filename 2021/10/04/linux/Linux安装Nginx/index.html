@@ -1,0 +1,402 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Linux安装Nginx | 人生若只如初见</title><meta name="keywords" content="linux安装软件"><meta name="author" content="endure"><meta name="copyright" content="endure"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="前言说到Nginx，可能大家最先想到的就是其负载均衡以及反向代理的功能。 那今天就来安装一下吧 下载地址Nginx 下载地址：http:&#x2F;&#x2F;nginx.org&#x2F;en&#x2F;download.html   开发版本主要用于 Nginx 软件项目的研发，稳定版本说明可以作为 Web 服务器投入商业应用。这里我们选择当前稳定版本：nginx-1.21.3  将鼠标悬浮在版本号上 左下角会出现对应信息 Wind">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux安装Nginx">
+<meta property="og:url" content="https://andrchen55302.github.io/2021/10/04/linux/Linux%E5%AE%89%E8%A3%85Nginx/index.html">
+<meta property="og:site_name" content="人生若只如初见">
+<meta property="og:description" content="前言说到Nginx，可能大家最先想到的就是其负载均衡以及反向代理的功能。 那今天就来安装一下吧 下载地址Nginx 下载地址：http:&#x2F;&#x2F;nginx.org&#x2F;en&#x2F;download.html   开发版本主要用于 Nginx 软件项目的研发，稳定版本说明可以作为 Web 服务器投入商业应用。这里我们选择当前稳定版本：nginx-1.21.3  将鼠标悬浮在版本号上 左下角会出现对应信息 Wind">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1633760025000.webp">
+<meta property="article:published_time" content="2021-10-03T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-10-21T08:06:57.406Z">
+<meta property="article:author" content="endure">
+<meta property="article:tag" content="linux安装软件">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1633760025000.webp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://andrchen55302.github.io/2021/10/04/linux/Linux%E5%AE%89%E8%A3%85Nginx/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":99,"position":"top","messagePrev":"文章尚处于最新!","messageNext":"自从上次更新以来，文章的内容可能已经过时了。"},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: endure","link":"链接: ","source":"来源: 人生若只如初见","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Linux安装Nginx',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-10-21 16:06:57'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    document.addEventListener('pjax:complete', detectApple)})(window)</script><link rel="stylesheet" href="/css/diy/diy.css"><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/./img/archivesBg.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></li><li><a class="site-page child" href="/collect/"><i class="fa-fw fas fa-heart"></i><span> 分享</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1633760025000.webp')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">人生若只如初见</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></li><li><a class="site-page child" href="/collect/"><i class="fa-fw fas fa-heart"></i><span> 分享</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Linux安装Nginx</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-10-03T16:00:00.000Z" title="发表于 2021-10-04 00:00:00">2021-10-04</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-10-21T08:06:57.406Z" title="更新于 2021-10-21 16:06:57">2021-10-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/linux/">linux</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>说到Nginx，可能大家最先想到的就是其负载均衡以及反向代理的功能。</p>
+<p>那今天就来安装一下吧</p>
+<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h3><p>Nginx 下载地址：<a target="_blank" rel="noopener" href="http://nginx.org/en/download.html">http://nginx.org/en/download.html</a> </p>
+<p><img src="https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1633744245000.png"></p>
+<p>开发版本主要用于 Nginx 软件项目的研发，稳定版本说明可以作为 Web 服务器投入商业应用。这里我们选择当前稳定版本：nginx-1.21.3 </p>
+<p>将鼠标悬浮在版本号上 左下角会出现对应信息</p>
+<h3 id="Windows版本安装"><a href="#Windows版本安装" class="headerlink" title="Windows版本安装"></a>Windows版本安装</h3><p>下载后缀为zip的安装包并解压至任意目录</p>
+<p><img src="https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1633769302000.png"></p>
+<p>解压目录如下:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1633769409000.png"></p>
+<h4 id="目录介绍"><a href="#目录介绍" class="headerlink" title="目录介绍"></a>目录介绍</h4><ul>
+<li>conf 目录：存放 Nginx 的主要配置文件，很多功能实现都是通过配置该目录下的 nginx.conf 文件</li>
+<li>docs 目录：存放 Nginx 服务器的主要文档资料，包括 Nginx 服务器的 LICENSE、OpenSSL 的 LICENSE 、PCRE 的 LICENSE 以及 zlib 的 LICENSE ，还包括本版本的 Nginx服务器升级的版本变更说明，以及 README 文档</li>
+<li>html 目录：存放了两个后缀名为 .html 的静态网页文件，这两个文件与 Nginx 服务器的运行相关。</li>
+<li>logs 目录：存放 Nginx 服务器运行的日志文件。</li>
+<li>nginx.exe：启动 Nginx 服务器的exe文件，如果 conf 目录下的 nginx.conf 文件配置正确的话，通过该文件即可启动 Nginx 服务器。</li>
+</ul>
+<h4 id="启动和关闭-Nginx"><a href="#启动和关闭-Nginx" class="headerlink" title="启动和关闭 Nginx"></a>启动和关闭 Nginx</h4><h5 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h5><p>​    双击解压之后目录中的 nginx.exe 文件，出现一闪而过的画面，则启动成功。</p>
+<p>​    然后在浏览器中输入 <a target="_blank" rel="noopener" href="http://localhost/">http://localhost</a> 或者 <a target="_blank" rel="noopener" href="http://localhost/">http://localhost:80</a> 出现如下界面即启动成功。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1633769883000.png"></p>
+<p>​    该页面即是上面解压目录中 html 目录下的 index.html 文件。</p>
+<h5 id="关闭"><a href="#关闭" class="headerlink" title="关闭"></a>关闭</h5><p>进入到解压之后的目录，输入如下命令：</p>
+<blockquote>
+<p>nginx.exe -s stop</p>
+</blockquote>
+<p>或者也可以打开任务管理器，找到 nginx 的进程，直接右键结束。</p>
+<h3 id="linux虚拟机安装"><a href="#linux虚拟机安装" class="headerlink" title="linux虚拟机安装"></a>linux虚拟机安装</h3><p>选择的 Linux 系统为 CentOS7.6。</p>
+<h4 id="安装-nginx环境"><a href="#安装-nginx环境" class="headerlink" title="安装 nginx环境"></a>安装 nginx环境</h4><h5 id="安装C-编译环境"><a href="#安装C-编译环境" class="headerlink" title="安装C++编译环境"></a>安装C++编译环境</h5><blockquote>
+<p>yum install gcc-c++</p>
+</blockquote>
+<p>对于 gcc，因为安装nginx需要先将官网下载的源码进行编译，编译依赖gcc环境，如果没有gcc环境的话，需要安装gcc。</p>
+<h5 id="安装模块依赖库"><a href="#安装模块依赖库" class="headerlink" title="安装模块依赖库"></a>安装模块依赖库</h5><blockquote>
+<p>yum install pcre*</p>
+<p>yum install openssl*</p>
+<p>yum install zlib*</p>
+</blockquote>
+<p>或者</p>
+<blockquote>
+<p>yum -y install pcre* openssl* zlib*</p>
+</blockquote>
+<p>对于 pcre，prce(Perl Compatible Regular Expressions)是一个Perl库，包括 perl 兼容的正则表达式库。nginx的http模块使用pcre来解析正则表达式，所以需要在linux上安装pcre库。</p>
+<p>　　对于 zlib，zlib库提供了很多种压缩和解压缩的方式，nginx使用zlib对http包的内容进行gzip，所以需要在linux上安装zlib库。</p>
+<p>　　对于 openssl，OpenSSL 是一个强大的安全套接字层密码库，囊括主要的密码算法、常用的密钥和证书封装管理功能及SSL协议，并提供丰富的应用程序供测试或其它目的使用。nginx不仅支持http协议，还支持https（即在ssl协议上传输http），所以需要在linux安装openssl库。</p>
+<h4 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h4><p>由于nginx较小所以使用wget下载</p>
+<blockquote>
+<h4 id="wget-http-nginx-org-download-nginx-1-21-3-tar-gz"><a href="#wget-http-nginx-org-download-nginx-1-21-3-tar-gz" class="headerlink" title="wget http://nginx.org/download/nginx-1.21.3.tar.gz"></a>wget <a target="_blank" rel="noopener" href="http://nginx.org/download/nginx-1.21.3.tar.gz">http://nginx.org/download/nginx-1.21.3.tar.gz</a></h4></blockquote>
+<p>解压至  /usr/local/ 目录下</p>
+<blockquote>
+<p>tar -zxvf nginx-1.21.3.tar.gz -C /usr/local</p>
+</blockquote>
+<p>进入该目录(nginx下) 并执行以下命令</p>
+<blockquote>
+<p>./configure</p>
+<p>make  &amp;&amp;  make install</p>
+</blockquote>
+<p>执行完之后 local下会有两个文件夹 nginx/nginx-1.21.3</p>
+<p><img src="https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1633771122000.png"></p>
+<h4 id="启动-1"><a href="#启动-1" class="headerlink" title="启动"></a>启动</h4><p>我们进入到/usr/local/nginx/sbin 目录，通过如下命令启动 nginx：</p>
+<blockquote>
+<p>cd ./nginx/sbin/</p>
+<p>./nginx</p>
+</blockquote>
+<p>当然你也可以配置环境命令，这样在任意目录都能启动 nginx。</p>
+<p>Linux 没有消息就好消息，不提示任何信息说明启动成功。</p>
+<p>或者也可以输入如下命令，查看 nginx 是否有服务正在运行：</p>
+<blockquote>
+<p>ps -ef | grep ngix</p>
+<p>lsof -i:80</p>
+</blockquote>
+<p>然后我们在浏览器输入Linux系统的IP地址，出现windows安装成功的界面即可。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1633769883000.png"></p>
+<p>或者输入curl命令：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1633771490000.png"></p>
+<h4 id="关闭-1"><a href="#关闭-1" class="headerlink" title="关闭"></a>关闭</h4><p>有两种方式：</p>
+<ul>
+<li><p>方式1：快速停止</p>
+<blockquote>
+<p>cd /usr/local/nginx/sbin</p>
+<p>./nginx -s stop</p>
+</blockquote>
+<p>此方式相当于先查出nginx进程id再使用kill命令强制杀掉进程。不太友好。</p>
+</li>
+<li><p>方式2：平缓停止</p>
+<blockquote>
+<p>cd /usr/local/nginx/sbin</p>
+<p>./nginx -s quit</p>
+</blockquote>
+<p>此方式是指允许 nginx 服务将当前正在处理的网络请求处理完成，但不在接收新的请求，之后关闭连接，停止工作。</p>
+</li>
+</ul>
+<h4 id="重启"><a href="#重启" class="headerlink" title="重启"></a>重启</h4><ul>
+<li><p>方式1：先停止再启动</p>
+<blockquote>
+<p>./nginx -s quit</p>
+<p>./nginx</p>
+</blockquote>
+<p>相当于先执行停止命令再执行启动命令。</p>
+</li>
+<li><p>方式2：重新加载配置文件</p>
+<blockquote>
+<p>./nginx -s reload</p>
+</blockquote>
+<p>通常我们使用nginx修改最多的便是其配置文件 nginx.conf。修改之后想要让配置文件生效而不用重启 nginx，便可以使用此命令。</p>
+</li>
+</ul>
+<h4 id="检查配置文件语法是否正确"><a href="#检查配置文件语法是否正确" class="headerlink" title="检查配置文件语法是否正确"></a>检查配置文件语法是否正确</h4><ul>
+<li><p>方式1：通过如下命令，指定需要检查的配置文件</p>
+<blockquote>
+<p>./nginx -t -c  /usr/local/nginx/conf/nginx.conf</p>
+</blockquote>
+</li>
+<li><p>方式2：通过如下命令，不加 -c 参数，默认检测nginx.conf 配置文件。</p>
+<blockquote>
+<p>./nginx -t</p>
+</blockquote>
+</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">endure</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://andrchen55302.github.io/2021/10/04/linux/Linux%E5%AE%89%E8%A3%85Nginx/">https://andrchen55302.github.io/2021/10/04/linux/Linux安装Nginx/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://andrchen55302.github.io" target="_blank">人生若只如初见</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/linux%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6/">linux安装软件</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1633760025000.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/10/05/linux/Linux%E5%AE%89%E8%A3%85Redis/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1633760025000.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Linux安装Redis</div></div></a></div><div class="next-post pull-right"><a href="/2021/10/03/linux/Linux%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85Maven/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1633760025000.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Linux虚拟机安装Maven</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2021/10/05/linux/Linux安装Redis/" title="Linux安装Redis"><img class="cover" src="https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1633760025000.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-05</div><div class="title">Linux安装Redis</div></div></a></div><div><a href="/2021/10/02/linux/Linux虚拟机安装JDK1.8/" title="Linux虚拟机安装JDK1.8"><img class="cover" src="https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1633760025000.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-02</div><div class="title">Linux虚拟机安装JDK1.8</div></div></a></div><div><a href="/2021/10/03/linux/Linux虚拟机安装Maven/" title="Linux虚拟机安装Maven"><img class="cover" src="https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1633760025000.webp" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-03</div><div class="title">Linux虚拟机安装Maven</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/./img/archivesBg.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">endure</div><div class="author-info__description">Blog博客，欢迎各位访问</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/AndrChen55302" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E5%9C%B0%E5%9D%80"><span class="toc-number">1.1.</span> <span class="toc-text">下载地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Windows%E7%89%88%E6%9C%AC%E5%AE%89%E8%A3%85"><span class="toc-number">1.2.</span> <span class="toc-text">Windows版本安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.2.1.</span> <span class="toc-text">目录介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8%E5%92%8C%E5%85%B3%E9%97%AD-Nginx"><span class="toc-number">1.2.2.</span> <span class="toc-text">启动和关闭 Nginx</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">启动</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%B3%E9%97%AD"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">关闭</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linux%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85"><span class="toc-number">1.3.</span> <span class="toc-text">linux虚拟机安装</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-nginx%E7%8E%AF%E5%A2%83"><span class="toc-number">1.3.1.</span> <span class="toc-text">安装 nginx环境</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%89%E8%A3%85C-%E7%BC%96%E8%AF%91%E7%8E%AF%E5%A2%83"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">安装C++编译环境</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%A8%A1%E5%9D%97%E4%BE%9D%E8%B5%96%E5%BA%93"><span class="toc-number">1.3.1.2.</span> <span class="toc-text">安装模块依赖库</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85"><span class="toc-number">1.3.2.</span> <span class="toc-text">编译安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#wget-http-nginx-org-download-nginx-1-21-3-tar-gz"><span class="toc-number">1.3.3.</span> <span class="toc-text">wget http:&#x2F;&#x2F;nginx.org&#x2F;download&#x2F;nginx-1.21.3.tar.gz</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8-1"><span class="toc-number">1.3.4.</span> <span class="toc-text">启动</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B3%E9%97%AD-1"><span class="toc-number">1.3.5.</span> <span class="toc-text">关闭</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E5%90%AF"><span class="toc-number">1.3.6.</span> <span class="toc-text">重启</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A3%80%E6%9F%A5%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E8%AF%AD%E6%B3%95%E6%98%AF%E5%90%A6%E6%AD%A3%E7%A1%AE"><span class="toc-number">1.3.7.</span> <span class="toc-text">检查配置文件语法是否正确</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/10/21/SpringBoot/natapp/" title="natapp"><img src="https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1634803480000.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="natapp"/></a><div class="content"><a class="title" href="/2021/10/21/SpringBoot/natapp/" title="natapp">natapp</a><time datetime="2021-10-20T16:00:00.000Z" title="发表于 2021-10-21 00:00:00">2021-10-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/14/SpringBoot/SpringBoot%E9%9B%86%E6%88%90%E9%98%BF%E9%87%8C%E4%BA%91OSS%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/" title="SpringBoot集成阿里云OSS实现图片上传"><img src="https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1633779120000.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SpringBoot集成阿里云OSS实现图片上传"/></a><div class="content"><a class="title" href="/2021/10/14/SpringBoot/SpringBoot%E9%9B%86%E6%88%90%E9%98%BF%E9%87%8C%E4%BA%91OSS%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/" title="SpringBoot集成阿里云OSS实现图片上传">SpringBoot集成阿里云OSS实现图片上传</a><time datetime="2021-10-13T16:00:00.000Z" title="发表于 2021-10-14 00:00:00">2021-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/14/Typora/Typora+Github%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E8%87%AA%E5%8A%A8%E4%B8%8A%E4%BC%A0/" title="Typora+Github实现图片自动上传"><img src="https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1634203828000.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Typora+Github实现图片自动上传"/></a><div class="content"><a class="title" href="/2021/10/14/Typora/Typora+Github%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E8%87%AA%E5%8A%A8%E4%B8%8A%E4%BC%A0/" title="Typora+Github实现图片自动上传">Typora+Github实现图片自动上传</a><time datetime="2021-10-13T16:00:00.000Z" title="发表于 2021-10-14 00:00:00">2021-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/13/SpringBoot/SpringBoot%E9%9B%86%E6%88%90/" title="SpringBoot集成Solr"><img src="https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1633779120000.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SpringBoot集成Solr"/></a><div class="content"><a class="title" href="/2021/10/13/SpringBoot/SpringBoot%E9%9B%86%E6%88%90/" title="SpringBoot集成Solr">SpringBoot集成Solr</a><time datetime="2021-10-12T16:00:00.000Z" title="发表于 2021-10-13 00:00:00">2021-10-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/12/solr/Solr8.x%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" title="Solr8.x使用教程"><img src="https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1634032448000.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Solr8.x使用教程"/></a><div class="content"><a class="title" href="/2021/10/12/solr/Solr8.x%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" title="Solr8.x使用教程">Solr8.x使用教程</a><time datetime="2021-10-11T16:00:00.000Z" title="发表于 2021-10-12 00:00:00">2021-10-12</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By endure</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'QlP0OFJGYvCJg1p6zdvK6oxY-gzGzoHsz',
+      appKey: 'QInPvgD4421I4PjUusqh7Pkh',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.9" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script></div></body></html>

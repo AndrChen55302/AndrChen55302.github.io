@@ -1,0 +1,415 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Solr8.x使用教程 | 人生若只如初见</title><meta name="keywords" content="solr使用教程"><meta name="author" content="endure"><meta name="copyright" content="endure"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Solr8.x使用教程搜索引擎简介1、Elasticsearch简介Elasticsearch是一个实时分布式搜索和分析引擎。它让你以前所未有的速度处理大数据成为可能。 它用于全文搜索、结构化搜索、分析以及将这三者混合使用： 维基百科使用Elasticsearch提供全文搜索并高亮关键字，以及输入实时搜索(search-asyou-type)和搜索纠错(did-you-mean)等搜索建议功能。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Solr8.x使用教程">
+<meta property="og:url" content="https://andrchen55302.github.io/2021/10/12/solr/Solr8.x%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="人生若只如初见">
+<meta property="og:description" content="Solr8.x使用教程搜索引擎简介1、Elasticsearch简介Elasticsearch是一个实时分布式搜索和分析引擎。它让你以前所未有的速度处理大数据成为可能。 它用于全文搜索、结构化搜索、分析以及将这三者混合使用： 维基百科使用Elasticsearch提供全文搜索并高亮关键字，以及输入实时搜索(search-asyou-type)和搜索纠错(did-you-mean)等搜索建议功能。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1634032448000.webp">
+<meta property="article:published_time" content="2021-10-11T16:00:00.000Z">
+<meta property="article:modified_time" content="2021-10-21T08:06:57.406Z">
+<meta property="article:author" content="endure">
+<meta property="article:tag" content="solr使用教程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1634032448000.webp"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://andrchen55302.github.io/2021/10/12/solr/Solr8.x%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":99,"position":"top","messagePrev":"文章尚处于最新!","messageNext":"自从上次更新以来，文章的内容可能已经过时了。"},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":50,"languages":{"author":"作者: endure","link":"链接: ","source":"来源: 人生若只如初见","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Solr8.x使用教程',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-10-21 16:06:57'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    document.addEventListener('pjax:complete', detectApple)})(window)</script><link rel="stylesheet" href="/css/diy/diy.css"><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/./img/archivesBg.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></li><li><a class="site-page child" href="/collect/"><i class="fa-fw fas fa-heart"></i><span> 分享</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1634032448000.webp')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">人生若只如初见</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 链接</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友人帐</span></a></li><li><a class="site-page child" href="/collect/"><i class="fa-fw fas fa-heart"></i><span> 分享</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Solr8.x使用教程</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-10-11T16:00:00.000Z" title="发表于 2021-10-12 00:00:00">2021-10-12</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-10-21T08:06:57.406Z" title="更新于 2021-10-21 16:06:57">2021-10-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/solr/">solr</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Solr8-x使用教程"><a href="#Solr8-x使用教程" class="headerlink" title="Solr8.x使用教程"></a>Solr8.x使用教程</h1><h2 id="搜索引擎简介"><a href="#搜索引擎简介" class="headerlink" title="搜索引擎简介"></a>搜索引擎简介</h2><h3 id="1、Elasticsearch简介"><a href="#1、Elasticsearch简介" class="headerlink" title="1、Elasticsearch简介"></a>1、Elasticsearch简介</h3><p>Elasticsearch是一个实时分布式搜索和分析引擎。它让你以前所未有的速度处理大数据成为可能。</p>
+<p>它用于全文搜索、结构化搜索、分析以及将这三者混合使用：</p>
+<p>维基百科使用Elasticsearch提供全文搜索并高亮关键字，以及输入实时搜索(search-asyou-type)和搜索纠错(did-you-mean)等搜索建议功能。</p>
+<p>英国卫报使用Elasticsearch结合用户日志和社交网络数据提供给他们的编辑以实时的反馈，以便及时了解公众对新发表的文章的回应。<br>StackOverflow结合全文搜索与地理位置查询，以及more-like-this功能来找到相关的问题和答案。</p>
+<p>Github使用Elasticsearch检索1300亿行的代码。</p>
+<p>但是Elasticsearch不仅用于大型企业，它还让像DataDog以及Klout这样的创业公司将最初的想法变成可扩展的解决方案。Elasticsearch可以在你的笔记本上运行，也可以在数以百计的服务器上处理PB级别的数据 。</p>
+<p>Elasticsearch是一个基于Apache Lucene(TM)的开源搜索引擎。无论在开源还是专有领域，Lucene可以被认为是迄今为止最先进、性能最好的、功能最全的搜索引擎库。</p>
+<p>但是，Lucene只是一个库。想要使用它，你必须使用Java来作为开发语言并将其直接集成到你的应用中，更糟糕的是，Lucene非常复杂，你需要深入了解检索的相关知识来理解它是如何工作的。</p>
+<p>Elasticsearch也使用Java开发并使用Lucene作为其核心来实现所有索引和搜索的功能，但是它的目的是通过简单的 RESTful API 来隐藏Lucene的复杂性，从而让全文搜索变得简单。</p>
+<h3 id="2、Solr简介"><a href="#2、Solr简介" class="headerlink" title="2、Solr简介"></a>2、Solr简介</h3><p>Solr 是Apache下的一个顶级开源项目，采用Java开发，它是基于Lucene的全文搜索服务器。Solr提供了比Lucene更为丰富的查询语言，同时实现了可配置、可扩展，并对索引、搜索性能进行了优化</p>
+<p>Solr可以独立运行，运行在Jetty、Tomcat等这些Servlet容器中，Solr 索引的实现方法很简单，用 POST 方法向 Solr 服务器发送一个描述 Field 及其内容的 XML 文档，Solr根据xml文档添加、删除、更新索引 。Solr 搜索只需要发送 HTTP GET 请求，然后对 Solr 返回Xml、json等格式的查询结果进行解析，组织页面布局。Solr不提供构建UI的功能，Solr提供了一个管理界面，通过管理界面可以查询Solr的配置和运行情况。</p>
+<p>solr是基于lucene开发企业级搜索服务器，实际上就是封装了lucene。</p>
+<p>Solr是一个独立的企业级搜索应用服务器，它对外提供类似于Web-service的API接口。用户可以通过http请求，向搜索引擎服务器提交一定格式的文件，生成索引；也可以通过提出查找请求，并得到返回结果。</p>
+<h3 id="3、Lucene简介"><a href="#3、Lucene简介" class="headerlink" title="3、Lucene简介"></a>3、Lucene简介</h3><p>Lucene是apache软件基金会4 jakarta项目组的一个子项目，是一个开放源代码的全文检索引擎工具包，但它不是一个完整的全文检索引擎，而是一个全文检索引擎的架构，提供了完整的查询引擎和索引引擎，部分文本分析引擎（英文与德文两种西方语言）。Lucene的目的是为软件开发人员提供一个简单易用的工具包，以方便的在目标系统中实现全文检索的功能，或者是以此为基础建立起完整的全文检索引擎。Lucene是一套用于全文检索和搜寻的开源程式库，由Apache软件基金会支持和提供。Lucene提供了一个简单却强大的应用程式接口，能够做全文索引和搜寻。在Java开发环境里Lucene是一个成熟的免费开源工具。就其本身而言，Lucene是当前以及最近几年最受欢迎的免费Java信息检索程序库。人们经常提到信息检索程序库，虽然与搜索引擎有关，但不应该将信息检索程序库与搜索引擎相混淆。</p>
+<p>Lucene是一个全文检索引擎的架构。那什么是全文搜索引擎？</p>
+<p>全文搜索引擎是名副其实的搜索引擎，国外具代表性的有Google、Fast/AllTheWeb、AltaVista、Inktomi、Teoma、WiseNut等，国内著名的有百度（Baidu）。它们都是通过从互联网上提取的各个网站的信息（以网页文字为主）而建立的数据库中，检索与用户查询条件匹配的相关记录，然后按一定的排列顺序将结果返回给用户，因此他们是真正的搜索引擎。</p>
+<p>从搜索结果来源的角度，全文搜索引擎又可细分为两种，一种是拥有自己的检索程序（Indexer），俗称“蜘蛛”（Spider）程序或“机器人”（Robot）程序，并自建网页数据库，搜索结果直接从自身的数据库中调用，如上面提到的7家引擎；另一种则是租用其他引擎的数据库，并按自定的格式排列搜索结果，如Lycos引擎。</p>
+<h3 id="4、Elasticsearch和Solr比较"><a href="#4、Elasticsearch和Solr比较" class="headerlink" title="4、Elasticsearch和Solr比较"></a>4、Elasticsearch和Solr比较</h3><p><img src="https://gitee.com/lexizhi/blogimg/raw/master/2021/354604-20180122010705803-1082290454.png" alt="img"></p>
+<p><img src="https://gitee.com/lexizhi/blogimg/raw/master/2021/354604-20180122010730865-1548826450.png" alt="img"></p>
+<p><img src="https://gitee.com/lexizhi/blogimg/raw/master/2021/354604-20180122010754100-1951694800.png" alt="img"></p>
+<p><img src="https://gitee.com/lexizhi/blogimg/raw/master/2021/354604-20180122011131225-347761833.png" alt="img"></p>
+<h3 id="5、ElasticSearch-vs-Solr-总结"><a href="#5、ElasticSearch-vs-Solr-总结" class="headerlink" title="5、ElasticSearch vs Solr 总结"></a>5、ElasticSearch vs Solr 总结</h3><p>　　（1）es基本是开箱即用，非常简单；Solr安装略微复杂一丢丢。</p>
+<p>　　（2）Solr 利用 Zookeeper 进行分布式管理，而 Elasticsearch 自身带有分布式协调管理功能。</p>
+<p>　　（3）Solr 支持更多格式的数据，比如JSON、XML、CSV，而 Elasticsearch 仅支持json文件格式。</p>
+<p>　　（4）Solr 官方提供的功能更多，而 Elasticsearch 本身更注重于核心功能，高级功能多有第三方插件提供，例如图形化界面需要kibana友好支撑</p>
+<p>　　（5）Solr 查询快，但更新索引时慢（即插入删除慢），用于电商等查询多的应用；</p>
+<p>　　　　 ES建立索引快（即查询慢），即实时性查询快，用于facebook新浪等搜索。</p>
+<p>　　   Solr 是传统搜索应用的有力解决方案，但 Elasticsearch 更适用于新兴的实时搜索应用。</p>
+<p>　　（6）Solr比较成熟，有一个更大，更成熟的用户、开发和贡献者社区，而 Elasticsearch相对开发维护者较少，更新太快，学习使用成本较高。</p>
+<h3 id="6、Hermes"><a href="#6、Hermes" class="headerlink" title="6、Hermes"></a>6、Hermes</h3><p>在整理solr和es资料的时候意外发现了一篇文章<a target="_blank" rel="noopener" href="https://www.csdn.net/article/2014-12-22/2823243"> Hermes与开源的Solr、ElasticSearch的不同</a>，中提到了hermes和他们两者的对比，于是摘抄了下面的部分文字，由于首次见到没有什么了解，今摘抄下了给广大读者有兴趣的朋友吧1</p>
+<p>Solr\ES ：偏重于为小规模的数据提供全文检索服务；Hermes：则更倾向于为大规模的数据仓库提供索引支持，为大规模数据仓库提供即席分析的解决方案，并降低数据仓库的成本，Hermes数据量更“大”。</p>
+<h4 id="Solr、ES的使用特点如下："><a href="#Solr、ES的使用特点如下：" class="headerlink" title="Solr、ES的使用特点如下："></a>Solr、ES的使用特点如下：</h4><ol>
+<li>源自搜索引擎，侧重搜索与全文检索。</li>
+<li>数据规模从几百万到千万不等，数据量过亿的集群特别少。</li>
+</ol>
+<h4 id="Hermes-的使用特点如下："><a href="#Hermes-的使用特点如下：" class="headerlink" title="Hermes:的使用特点如下："></a>Hermes:的使用特点如下：</h4><ol>
+<li>一个基于大索引技术的海量数据实时检索分析平台。侧重数据分析。 </li>
+<li>数据规模从几亿到万亿不等。最小的表也是千万级别。在腾讯17 台TS5机器，就可以处理每天450亿的数据(每条数据1kb左右)，数据可以保存一个月之久。</li>
+</ol>
+<h2 id="Solr8-x实战"><a href="#Solr8-x实战" class="headerlink" title="Solr8.x实战"></a>Solr8.x实战</h2><h3 id="1、下载安装solr8"><a href="#1、下载安装solr8" class="headerlink" title="1、下载安装solr8"></a>1、下载安装solr8</h3><p>下载页面：<a target="_blank" rel="noopener" href="https://solr.apache.org/downloads.html">https://solr.apache.org/downloads.html</a></p>
+<img src="https://gitee.com/lexizhi/blogimg/raw/master/2021/image-20211012124342982.png" alt="image-20211012124342982" style="zoom:80%;" />
+
+
+<p>【linux版】：<a target="_blank" rel="noopener" href="https://dlcdn.apache.org/lucene/solr/8.10.0/solr-8.10.0.tgz">https://dlcdn.apache.org/lucene/solr/8.10.0/solr-8.10.0.tgz</a></p>
+<p>【Windows版】：<a target="_blank" rel="noopener" href="https://dlcdn.apache.org/lucene/solr/8.10.0/solr-8.10.0.zip">https://dlcdn.apache.org/lucene/solr/8.10.0/solr-8.10.0.zip</a></p>
+<h3 id="2、安装solr8"><a href="#2、安装solr8" class="headerlink" title="2、安装solr8"></a>2、安装solr8</h3><blockquote>
+<p><strong>注意：</strong>需要JAVA_Home的配置</p>
+</blockquote>
+<p>将下载好的安装包解压到一个<strong>没有空格，没有中文</strong>的路径</p>
+<img src="https://gitee.com/lexizhi/blogimg/raw/master/2021/image-20211012124143839.png" alt="image-20211012124143839" style="zoom: 80%;" />
+
+<h3 id="3、solr常用命令"><a href="#3、solr常用命令" class="headerlink" title="3、solr常用命令"></a>3、solr常用命令</h3><h4 id="（1）启动solr"><a href="#（1）启动solr" class="headerlink" title="（1）启动solr"></a>（1）启动solr</h4><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">solr.<span class="built_in">cmd</span> <span class="built_in">start</span></span><br></pre></td></tr></table></figure>
+
+<p>在浏览器访问：<code>localhost:8093</code>，打开如下界面，solr就启动成功了。</p>
+<p><img src="https://gitee.com/lexizhi/blogimg/raw/master/2021/image-20211012124915529.png" alt="image-20211012124915529"></p>
+<h4 id="（2）重启solr"><a href="#（2）重启solr" class="headerlink" title="（2）重启solr"></a>（2）重启solr</h4><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">solr.<span class="built_in">cmd</span> restart -p 指定端口</span><br></pre></td></tr></table></figure>
+
+<h4 id="（3）关闭solr"><a href="#（3）关闭solr" class="headerlink" title="（3）关闭solr"></a>（3）关闭solr</h4><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">solr.<span class="built_in">cmd</span> stop --all</span><br></pre></td></tr></table></figure>
+
+<h3 id="4、新建core"><a href="#4、新建core" class="headerlink" title="4、新建core"></a>4、新建core</h3><blockquote>
+<p>相当于SQL的视图</p>
+</blockquote>
+<h4 id="（1）命令创建core"><a href="#（1）命令创建core" class="headerlink" title="（1）命令创建core"></a>（1）命令创建core</h4><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\solr.<span class="built_in">cmd</span> create -c demo_core</span><br></pre></td></tr></table></figure>
+
+<img src="https://gitee.com/lexizhi/blogimg/raw/master/2021/image-20211012133425411.png" alt="image-20211012133425411" style="zoom:80%;" />
+
+<h4 id="（2）手工创建core"><a href="#（2）手工创建core" class="headerlink" title="（2）手工创建core"></a>（2）手工创建core</h4><p>在solr目录中的\server\solr文件夹中创建一个名为<code>test-core</code>的文件夹。然后把\server\solr\configsets\sample_techproducts_configs下面的conf文件夹复制到刚才创建的<code>test-core</code>文件夹下面。</p>
+<p><img src="https://gitee.com/lexizhi/blogimg/raw/master/2021/image-20211012125452544.png" alt="image-20211012125452544"></p>
+<img src="https://gitee.com/lexizhi/blogimg/raw/master/2021/image-20211012125527272.png" alt="image-20211012125527272" style="zoom: 80%;" />
+
+<p>　　完成上面操作之后启动solr，启动成功之后打开浏览器进入<a target="_blank" rel="noopener" href="http://127.0.0.1:8983/solr/#/%E5%9C%B0%E5%9D%80%EF%BC%8C%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%9C%8B%E8%A7%81solr%E7%9A%84%E7%AE%A1%E7%90%86%E7%95%8C%E9%9D%A2%E3%80%82%E7%82%B9%E5%87%BB%E5%B7%A6%E4%BE%A7%E7%9A%84Core">http://127.0.0.1:8983/solr/#/地址，就可以看见solr的管理界面。点击左侧的Core</a> Admin，在新页面的name和instanceDir输入框中分别修改为刚才创建的文件夹名称<code>test-core</code>，然后点击下面Add Core按钮即可成功创建core。</p>
+<img src="https://gitee.com/lexizhi/blogimg/raw/master/2021/image-20211012125723876.png" alt="image-20211012125723876" style="zoom:80%;" />
+
+<p>　　页面显示创建成功之后，会在你刚才创建的<code>test-core</code>文件夹下面生成一个data文件夹和一个core.properties文件，这样即表示创建成功。</p>
+<p><img src="https://gitee.com/lexizhi/blogimg/raw/master/2021/image-20211012130340424.png" alt="image-20211012130340424"></p>
+<h3 id="5、连接mysql数据库"><a href="#5、连接mysql数据库" class="headerlink" title="5、连接mysql数据库"></a>5、连接mysql数据库</h3><h4 id="（1）拷贝相关jar包"><a href="#（1）拷贝相关jar包" class="headerlink" title="（1）拷贝相关jar包"></a>（1）拷贝相关jar包</h4><ul>
+<li>solr-dataimporthandler-8.10.0.jar</li>
+<li>solr-dataimporthandler-extras-8.10.0.jar</li>
+<li>mysql-connector-java-xxx.jar</li>
+</ul>
+<p>将<code>D:\solr-8.10.0</code>目录下的<code>dist</code>目录中的两个jar：<code>solr-dataimporthandler-8.10.0.jar </code>和 <code>solr-dataimporthandler-extras-8.10.0.jar</code>以及 <code>mysql-connector-java-xxx.jar</code> 拷贝到<code>D:\solr-8.10.0\server\solr-webapp\webapp\WEB-INF\lib</code>文件夹下</p>
+<img src="https://gitee.com/lexizhi/blogimg/raw/master/2021/image-20211012131013573.png" alt="image-20211012131013573" style="zoom:80%;" />
+
+<img src="https://gitee.com/lexizhi/blogimg/raw/master/2021/image-20211012130946111.png" alt="image-20211012130946111" style="zoom:80%;" />
+
+<h4 id="（2）修改配置文件solrconfig-xml"><a href="#（2）修改配置文件solrconfig-xml" class="headerlink" title="（2）修改配置文件solrconfig.xml"></a>（2）修改配置文件solrconfig.xml</h4><p>修改<code>D:\solr-8.10.0\server\solr\hotel_core\conf\solrconfig.xml</code></p>
+<p>打开文件，找到下面语句的位置</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">requestHandler</span> <span class="attr">name</span>=<span class="string">&quot;/select&quot;</span> <span class="attr">class</span>=<span class="string">&quot;solr.SearchHandler&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在该语句的上方添加如下语句：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">requestHandler</span> <span class="attr">name</span>=<span class="string">&quot;/dataimport&quot;</span> <span class="attr">class</span>=<span class="string">&quot;org.apache.solr.handler.dataimport.DataImportHandler&quot;</span>&gt;</span></span><br><span class="line">　　     <span class="tag">&lt;<span class="name">lst</span> <span class="attr">name</span>=<span class="string">&quot;defaults&quot;</span>&gt;</span></span><br><span class="line">　　        <span class="tag">&lt;<span class="name">str</span> <span class="attr">name</span>=<span class="string">&quot;config&quot;</span>&gt;</span>data-config.xml<span class="tag">&lt;/<span class="name">str</span>&gt;</span></span><br><span class="line">　　     <span class="tag">&lt;/<span class="name">lst</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">requestHandler</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如下图所示：</p>
+<p><img src="https://gitee.com/lexizhi/blogimg/raw/master/2021/image-20211012131206470.png" alt="image-20211012131206470"></p>
+<h4 id="（3）新建data-config-xml文件"><a href="#（3）新建data-config-xml文件" class="headerlink" title="（3）新建data-config.xml文件"></a>（3）新建data-config.xml文件</h4><p>在路径D:\solr-8.10.0\server\solr\hotel_core\conf下新建data-config.xml文件，文件内容如下：</p>
+<blockquote>
+<p>根据现有数据库的情况，选择一个表进行练习</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dataConfig</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dataSource</span> <span class="attr">type</span>=<span class="string">&quot;JdbcDataSource&quot;</span> <span class="attr">driver</span>=<span class="string">&quot;com.mysql.cj.jdbc.Driver&quot;</span> <span class="attr">url</span>=<span class="string">&quot;jdbc:mysql://localhost:3306/itripdb&quot;</span> <span class="attr">user</span>=<span class="string">&quot;root&quot;</span> <span class="attr">password</span>=<span class="string">&quot;1234&quot;</span> <span class="attr">encoding</span>=<span class="string">&quot;UTF-8&quot;</span>/&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">document</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">entity</span> <span class="attr">name</span>=<span class="string">&quot;itrip_user&quot;</span> <span class="attr">processor</span>=<span class="string">&quot;SqlEntityProcessor&quot;</span> <span class="attr">pk</span>=<span class="string">&quot;id&quot;</span> <span class="attr">query</span>=<span class="string">&quot;select * from itrip_user&quot;</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">&quot;id&quot;</span> <span class="attr">column</span>=<span class="string">&quot;id&quot;</span>/&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">&quot;userCode&quot;</span> <span class="attr">column</span>=<span class="string">&quot;userCode&quot;</span>/&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">&quot;userName&quot;</span> <span class="attr">column</span>=<span class="string">&quot;userName&quot;</span>/&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">entity</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">document</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dataConfig</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="（4）修改文件managed-schema文件"><a href="#（4）修改文件managed-schema文件" class="headerlink" title="（4）修改文件managed-schema文件"></a>（4）修改文件managed-schema文件</h4><p>增加以下内容：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">&quot;userCode&quot;</span> <span class="attr">type</span>=<span class="string">&quot;string&quot;</span> <span class="attr">indexed</span>=<span class="string">&quot;true&quot;</span> <span class="attr">stored</span>=<span class="string">&quot;true&quot;</span> <span class="attr">multiValued</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">&quot;userName&quot;</span> <span class="attr">type</span>=<span class="string">&quot;string&quot;</span> <span class="attr">indexed</span>=<span class="string">&quot;true&quot;</span> <span class="attr">stored</span>=<span class="string">&quot;true&quot;</span> <span class="attr">multiValued</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6、solr导入mysql数据"><a href="#6、solr导入mysql数据" class="headerlink" title="6、solr导入mysql数据"></a>6、solr导入mysql数据</h3><h4 id="（1）重启solr服务"><a href="#（1）重启solr服务" class="headerlink" title="（1）重启solr服务"></a>（1）重启solr服务</h4><h4 id="（2）重启后打开浏览器进入到solr页面"><a href="#（2）重启后打开浏览器进入到solr页面" class="headerlink" title="（2）重启后打开浏览器进入到solr页面"></a>（2）重启后打开浏览器进入到solr页面</h4><img src="https://gitee.com/lexizhi/blogimg/raw/master/2021/image-20211012132206789.png" alt="image-20211012132206789" style="zoom:80%;" />
+
+<h4 id="（3）完成"><a href="#（3）完成" class="headerlink" title="（3）完成"></a>（3）完成</h4><img src="https://gitee.com/lexizhi/blogimg/raw/master/2021/image-20211012132329088.png" alt="image-20211012132329088" style="zoom:80%;" />
+
+<h4 id="（4）查询"><a href="#（4）查询" class="headerlink" title="（4）查询"></a>（4）查询</h4><img src="https://gitee.com/lexizhi/blogimg/raw/master/2021/image-20211012132454752.png" alt="image-20211012132454752" style="zoom: 67%;" />
+
+<h3 id="7、尝试分词操作"><a href="#7、尝试分词操作" class="headerlink" title="7、尝试分词操作"></a>7、尝试分词操作</h3><p><img src="https://gitee.com/lexizhi/blogimg/raw/master/2021/image-20211012133857255.png" alt="image-20211012133857255"></p>
+<h3 id="8、安装中文分词库"><a href="#8、安装中文分词库" class="headerlink" title="8、安装中文分词库"></a>8、安装中文分词库</h3><h4 id="（1）下载分词库"><a href="#（1）下载分词库" class="headerlink" title="（1）下载分词库"></a>（1）下载分词库</h4><p>【下载地址】：<a target="_blank" rel="noopener" href="https://search.maven.org/search?q=com.github.magese">https://search.maven.org/search?q=com.github.magese</a></p>
+<img src="https://gitee.com/lexizhi/blogimg/raw/master/2021/image-20211012134329749.png" alt="image-20211012134329749" style="zoom: 80%;" />
+
+<h4 id="（2）配置分词库"><a href="#（2）配置分词库" class="headerlink" title="（2）配置分词库"></a>（2）配置分词库</h4><p>将下载好的分词库拷贝到<code>D:/solr-8.10.0/server/solr-webapp/webapp/WEB-INF/lib</code> 路径下</p>
+<img src="https://gitee.com/lexizhi/blogimg/raw/master/2021/image-20211012134801918.png" alt="image-20211012134801918" style="zoom:80%;" />
+
+<p>打开<code>D:/solr-8.10.0/server/solr/hotel_core/managed-schema</code> 文件，在文件末尾<code>&lt;/schema&gt;</code>之前添加以下代码：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">fieldType</span> <span class="attr">name</span>=<span class="string">&quot;text_ik&quot;</span> <span class="attr">class</span>=<span class="string">&quot;solr.TextField&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">analyzer</span> <span class="attr">type</span>=<span class="string">&quot;index&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tokenizer</span> <span class="attr">class</span>=<span class="string">&quot;org.wltea.analyzer.lucene.IKTokenizerFactory&quot;</span> <span class="attr">useSmart</span>=<span class="string">&quot;false&quot;</span> <span class="attr">conf</span>=<span class="string">&quot;ik.conf&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">filter</span> <span class="attr">class</span>=<span class="string">&quot;solr.LowerCaseFilterFactory&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">analyzer</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">analyzer</span> <span class="attr">type</span>=<span class="string">&quot;query&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">tokenizer</span> <span class="attr">class</span>=<span class="string">&quot;org.wltea.analyzer.lucene.IKTokenizerFactory&quot;</span> <span class="attr">useSmart</span>=<span class="string">&quot;true&quot;</span> <span class="attr">conf</span>=<span class="string">&quot;ik.conf&quot;</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">filter</span> <span class="attr">class</span>=<span class="string">&quot;solr.LowerCaseFilterFactory&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">analyzer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">fieldType</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如下图所示：</p>
+<img src="https://gitee.com/lexizhi/blogimg/raw/master/2021/image-20211012135041623.png" alt="image-20211012135041623" style="zoom:80%;" />
+
+<p>重启solr服务，命令为</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">solr.<span class="built_in">cmd</span> restart</span><br></pre></td></tr></table></figure>
+
+<h4 id="（3）使用手动安装的中文分词库进行分词操作"><a href="#（3）使用手动安装的中文分词库进行分词操作" class="headerlink" title="（3）使用手动安装的中文分词库进行分词操作"></a>（3）使用手动安装的中文分词库进行分词操作</h4><p>打开浏览器，重新输入语句，选择刚刚下载拷贝到solr下的ik</p>
+<img src="https://gitee.com/lexizhi/blogimg/raw/master/2021/image-20211012135433497.png" alt="image-20211012135433497" style="zoom:80%;" />
+
+<p>分词结果如下：</p>
+<p><img src="https://gitee.com/lexizhi/blogimg/raw/master/2021/image-20211012135451523.png" alt="image-20211012135451523"></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">endure</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://andrchen55302.github.io/2021/10/12/solr/Solr8.x%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">https://andrchen55302.github.io/2021/10/12/solr/Solr8.x使用教程/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://andrchen55302.github.io" target="_blank">人生若只如初见</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/solr%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/">solr使用教程</a></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1634032448000.webp" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2021/10/13/SpringBoot/SpringBoot%E9%9B%86%E6%88%90/"><img class="prev-cover" src="https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1633779120000.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">SpringBoot集成Solr</div></div></a></div><div class="next-post pull-right"><a href="/2021/10/05/linux/Linux%E5%AE%89%E8%A3%85Redis/"><img class="next-cover" src="https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1633760025000.webp" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Linux安装Redis</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div class="vcomment" id="vcomment"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/./img/archivesBg.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">endure</div><div class="author-info__description">Blog博客，欢迎各位访问</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">24</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">17</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">13</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/AndrChen55302" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:xxxxxx@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Solr8-x%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">Solr8.x使用教程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">搜索引擎简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81Elasticsearch%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.1.</span> <span class="toc-text">1、Elasticsearch简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81Solr%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.2.</span> <span class="toc-text">2、Solr简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81Lucene%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.3.</span> <span class="toc-text">3、Lucene简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81Elasticsearch%E5%92%8CSolr%E6%AF%94%E8%BE%83"><span class="toc-number">1.1.4.</span> <span class="toc-text">4、Elasticsearch和Solr比较</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81ElasticSearch-vs-Solr-%E6%80%BB%E7%BB%93"><span class="toc-number">1.1.5.</span> <span class="toc-text">5、ElasticSearch vs Solr 总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81Hermes"><span class="toc-number">1.1.6.</span> <span class="toc-text">6、Hermes</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Solr%E3%80%81ES%E7%9A%84%E4%BD%BF%E7%94%A8%E7%89%B9%E7%82%B9%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-number">1.1.6.1.</span> <span class="toc-text">Solr、ES的使用特点如下：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Hermes-%E7%9A%84%E4%BD%BF%E7%94%A8%E7%89%B9%E7%82%B9%E5%A6%82%E4%B8%8B%EF%BC%9A"><span class="toc-number">1.1.6.2.</span> <span class="toc-text">Hermes:的使用特点如下：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Solr8-x%E5%AE%9E%E6%88%98"><span class="toc-number">1.2.</span> <span class="toc-text">Solr8.x实战</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85solr8"><span class="toc-number">1.2.1.</span> <span class="toc-text">1、下载安装solr8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%AE%89%E8%A3%85solr8"><span class="toc-number">1.2.2.</span> <span class="toc-text">2、安装solr8</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81solr%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-number">1.2.3.</span> <span class="toc-text">3、solr常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E5%90%AF%E5%8A%A8solr"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">（1）启动solr</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E9%87%8D%E5%90%AFsolr"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">（2）重启solr</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E5%85%B3%E9%97%ADsolr"><span class="toc-number">1.2.3.3.</span> <span class="toc-text">（3）关闭solr</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E6%96%B0%E5%BB%BAcore"><span class="toc-number">1.2.4.</span> <span class="toc-text">4、新建core</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E5%91%BD%E4%BB%A4%E5%88%9B%E5%BB%BAcore"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">（1）命令创建core</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E6%89%8B%E5%B7%A5%E5%88%9B%E5%BB%BAcore"><span class="toc-number">1.2.4.2.</span> <span class="toc-text">（2）手工创建core</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E8%BF%9E%E6%8E%A5mysql%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.2.5.</span> <span class="toc-text">5、连接mysql数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E6%8B%B7%E8%B4%9D%E7%9B%B8%E5%85%B3jar%E5%8C%85"><span class="toc-number">1.2.5.1.</span> <span class="toc-text">（1）拷贝相关jar包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6solrconfig-xml"><span class="toc-number">1.2.5.2.</span> <span class="toc-text">（2）修改配置文件solrconfig.xml</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E6%96%B0%E5%BB%BAdata-config-xml%E6%96%87%E4%BB%B6"><span class="toc-number">1.2.5.3.</span> <span class="toc-text">（3）新建data-config.xml文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%884%EF%BC%89%E4%BF%AE%E6%94%B9%E6%96%87%E4%BB%B6managed-schema%E6%96%87%E4%BB%B6"><span class="toc-number">1.2.5.4.</span> <span class="toc-text">（4）修改文件managed-schema文件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81solr%E5%AF%BC%E5%85%A5mysql%E6%95%B0%E6%8D%AE"><span class="toc-number">1.2.6.</span> <span class="toc-text">6、solr导入mysql数据</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E9%87%8D%E5%90%AFsolr%E6%9C%8D%E5%8A%A1"><span class="toc-number">1.2.6.1.</span> <span class="toc-text">（1）重启solr服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E9%87%8D%E5%90%AF%E5%90%8E%E6%89%93%E5%BC%80%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BF%9B%E5%85%A5%E5%88%B0solr%E9%A1%B5%E9%9D%A2"><span class="toc-number">1.2.6.2.</span> <span class="toc-text">（2）重启后打开浏览器进入到solr页面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E5%AE%8C%E6%88%90"><span class="toc-number">1.2.6.3.</span> <span class="toc-text">（3）完成</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%884%EF%BC%89%E6%9F%A5%E8%AF%A2"><span class="toc-number">1.2.6.4.</span> <span class="toc-text">（4）查询</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E5%B0%9D%E8%AF%95%E5%88%86%E8%AF%8D%E6%93%8D%E4%BD%9C"><span class="toc-number">1.2.7.</span> <span class="toc-text">7、尝试分词操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81%E5%AE%89%E8%A3%85%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D%E5%BA%93"><span class="toc-number">1.2.8.</span> <span class="toc-text">8、安装中文分词库</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E4%B8%8B%E8%BD%BD%E5%88%86%E8%AF%8D%E5%BA%93"><span class="toc-number">1.2.8.1.</span> <span class="toc-text">（1）下载分词库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E9%85%8D%E7%BD%AE%E5%88%86%E8%AF%8D%E5%BA%93"><span class="toc-number">1.2.8.2.</span> <span class="toc-text">（2）配置分词库</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%883%EF%BC%89%E4%BD%BF%E7%94%A8%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85%E7%9A%84%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D%E5%BA%93%E8%BF%9B%E8%A1%8C%E5%88%86%E8%AF%8D%E6%93%8D%E4%BD%9C"><span class="toc-number">1.2.8.3.</span> <span class="toc-text">（3）使用手动安装的中文分词库进行分词操作</span></a></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/10/21/SpringBoot/natapp/" title="natapp"><img src="https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1634803480000.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="natapp"/></a><div class="content"><a class="title" href="/2021/10/21/SpringBoot/natapp/" title="natapp">natapp</a><time datetime="2021-10-20T16:00:00.000Z" title="发表于 2021-10-21 00:00:00">2021-10-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/14/SpringBoot/SpringBoot%E9%9B%86%E6%88%90%E9%98%BF%E9%87%8C%E4%BA%91OSS%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/" title="SpringBoot集成阿里云OSS实现图片上传"><img src="https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1633779120000.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SpringBoot集成阿里云OSS实现图片上传"/></a><div class="content"><a class="title" href="/2021/10/14/SpringBoot/SpringBoot%E9%9B%86%E6%88%90%E9%98%BF%E9%87%8C%E4%BA%91OSS%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/" title="SpringBoot集成阿里云OSS实现图片上传">SpringBoot集成阿里云OSS实现图片上传</a><time datetime="2021-10-13T16:00:00.000Z" title="发表于 2021-10-14 00:00:00">2021-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/14/Typora/Typora+Github%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E8%87%AA%E5%8A%A8%E4%B8%8A%E4%BC%A0/" title="Typora+Github实现图片自动上传"><img src="https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1634203828000.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Typora+Github实现图片自动上传"/></a><div class="content"><a class="title" href="/2021/10/14/Typora/Typora+Github%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E8%87%AA%E5%8A%A8%E4%B8%8A%E4%BC%A0/" title="Typora+Github实现图片自动上传">Typora+Github实现图片自动上传</a><time datetime="2021-10-13T16:00:00.000Z" title="发表于 2021-10-14 00:00:00">2021-10-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/13/SpringBoot/SpringBoot%E9%9B%86%E6%88%90/" title="SpringBoot集成Solr"><img src="https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1633779120000.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="SpringBoot集成Solr"/></a><div class="content"><a class="title" href="/2021/10/13/SpringBoot/SpringBoot%E9%9B%86%E6%88%90/" title="SpringBoot集成Solr">SpringBoot集成Solr</a><time datetime="2021-10-12T16:00:00.000Z" title="发表于 2021-10-13 00:00:00">2021-10-13</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/10/12/solr/Solr8.x%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" title="Solr8.x使用教程"><img src="https://cdn.jsdelivr.net/gh/AndrChen55302/CDN@main/img/hpp_upload/1634032448000.webp" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Solr8.x使用教程"/></a><div class="content"><a class="title" href="/2021/10/12/solr/Solr8.x%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" title="Solr8.x使用教程">Solr8.x使用教程</a><time datetime="2021-10-11T16:00:00.000Z" title="发表于 2021-10-12 00:00:00">2021-10-12</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By endure</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>function loadValine () {
+  function initValine () {
+    const valine = new Valine(Object.assign({
+      el: '#vcomment',
+      appId: 'QlP0OFJGYvCJg1p6zdvK6oxY-gzGzoHsz',
+      appKey: 'QInPvgD4421I4PjUusqh7Pkh',
+      placeholder: 'Please leave your footprints',
+      avatar: 'monsterid',
+      meta: 'nick,mail,link'.split(','),
+      pageSize: '10',
+      lang: 'zh-CN',
+      recordIP: false,
+      serverURLs: '',
+      emojiCDN: '',
+      emojiMaps: "",
+      enableQQ: false,
+      path: window.location.pathname,
+      requiredFields: ["nick,mail"],
+      visitor: false
+    }, null))
+  }
+
+  if (typeof Valine === 'function') initValine() 
+  else getScript('https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js').then(initValine)
+}
+
+if ('Valine' === 'Valine' || !false) {
+  if (false) btf.loadComment(document.getElementById('vcomment'),loadValine)
+  else setTimeout(loadValine, 0)
+} else {
+  function loadOtherComment () {
+    loadValine()
+  }
+}</script></div><script defer="defer" id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zIndex="-1" mobile="false" data-click="true"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.9" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
+  'title',
+  '#config-diff',
+  '#body-wrap',
+  '#rightside-config-hide',
+  '#rightside-config-show',
+  '.js-pjax'
+]
+
+if (false) {
+  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
+}
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+
+  // removeEventListener scroll 
+  window.removeEventListener('scroll', window.tocScrollFn)
+  window.removeEventListener('scroll', scrollCollect)
+
+  typeof preloader === 'object' && preloader.initLoading()
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // Analytics
+  if (false) {
+    MtaH5.pgv()
+  }
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+
+  typeof preloader === 'object' && preloader.endLoading()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script></div></body></html>
